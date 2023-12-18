@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+#include <random>
+
+// Fonctions Helper pour la formule Black-Scholes
+double norm_cdf(double x) {
+    return 0.5 * std::erfc(-x * M_SQRT1_2);
+}
+
+// Classe Option Européenne
+class EuropeanOption {
+private:
+    double strike;
+    double maturity;
+    double riskFreeRate;
+    double volatility;
+
+public:
+    EuropeanOption(double strike, double maturity, double riskFreeRate, double volatility)
+        : strike(strike), maturity(maturity), riskFreeRate(riskFreeRate), volatility(volatility) {}
+
+    double price(double stockPrice) {
+        double d1 = (std::log(stockPrice / strike) + (riskFreeRate + 0.5 * volatility * volatility) * maturity) / (volatility * std::sqrt(maturity));
+        double d2 = d1 - volatility * std::sqrt(maturity);
+        return stockPrice * norm_cdf(d1) - strike * std::exp(-riskFreeRate * maturity) * norm_cdf(d2);
+    }
+};
+
+// Classe Option Américaine
+class AmericanOption {
+private:
+    double strike;
+    double maturity;
+    double riskFreeRate;
+    double volatility;
+    int numSimulations;
+
+public:
+    AmericanOption(double strike, double maturity, double riskFreeRate, double volatility, int numSimulations)
+        : strike(strike), maturity(maturity), riskFreeRate(riskFreeRate), volatility(volatility), numSimulations(numSimulations) {}
+
+    double price(double stockPrice) {
+        std::default_random_engine generator;
+        std::normal_distribution<double> distribution(0.0, 1.0);
+
+        double payoffSum = 0.0;
+        for (int i = 0; i < numSimulations; ++i) {
+            double path = stockPrice;
+            double dt = maturity / 100.0;
+            for (double t = 0; t < maturity; t += dt) {
+                path *= exp((riskFreeRate - 0.5 * volatility * volatility) * dt + volatility * sqrt(dt) * distribution(generator));
+            }
+            payoffSum += std::max(path - strike, 0.0);
+        }
+
+        double price = exp(-riskFreeRate * maturity) * payoffSum / numSimulations;
+        return price;
+    }
+};
+
+int main() {
+    EuropeanOption euroOption(100, 1, 0.05, 0.2);
+    AmericanOption amerOption(100, 1, 0.05, 0.2, 10000);
+
+    double stockPrice = 100;
+
+    std::cout << "Prix de l'Option Européenne (Black-Scholes): " << euroOption.price(stockPrice) << std::endl;
+    std::cout << "Prix de l'Option Américaine (Monte Carlo): " << amerOption.price(stockPrice) << std::endl;
+
+    return 0;
+}
