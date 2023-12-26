@@ -33,7 +33,7 @@ void BlackScholes::set_time(double time){this->time = time;};
 double BlackScholes::get_time() const {return time;};
 
 
-void BlackScholes::set_stockPrice(double time){this->stockPrice = stockPrice;};
+void BlackScholes::set_stockPrice(double stockPrice){this->stockPrice = stockPrice;};
 double BlackScholes::get_stockPrice() const {return stockPrice;};
 
 
