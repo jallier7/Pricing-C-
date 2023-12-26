@@ -16,7 +16,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/<BSModel.cpp>",
+            "program": "${workspaceFolder}/ BSModel.cpp",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
