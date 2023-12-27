@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "BSmodel.h"
 #include <iostream>
 #include <vector>
@@ -23,6 +24,16 @@ int main() {
     for (double price : pricePath) {
         std::cout << price << std::endl;
     }
+=======
+#include <iostream>
+#include "Option.h"
+#include "BSmodel.h"
+
+
+int main(){
+
+    EuroCall call(2.0,40.0);
+>>>>>>> 7c00c40ec3fcb94e740bf5ce22caa01dddbaba96
 
     return 0;
 }

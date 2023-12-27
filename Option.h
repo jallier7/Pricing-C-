@@ -15,7 +15,8 @@ class Option{
 
     Option();
     Option(double maturity, double strikePrice);
-    virtual ~Option(){};
+    virtual ~Option();
+
 
     void set_maturity(double maturity);
     double get_maturity() const;
@@ -23,31 +24,35 @@ class Option{
     void set_strikePrice(double strikePrice);
     double get_strikePrice() const;
 
-    virtual double payoff(double maturityPrice);
-    virtual double price(const BlackScholes& BS);
+    virtual double payoff(double maturityPrice) const=0;
+    virtual double price(const BlackScholes& BS) const=0;
 
 };
 
-class Call : public Option {
+class EuroCall : public Option {
 
     public:
 
-    ~Call(){};
+    EuroCall();
+    EuroCall(double maturity, double strikePrice);
+    ~EuroCall();
 
-    double payoff(double maturityPrice);
-    double price(const BlackScholes& BS);
+    double payoff(double maturityPrice) const;
+    double price(const BlackScholes& BS) const;
 
 
 };
 
-class Put : public Option {
+class EuroPut : public Option {
 
     public:
 
-    ~Put(){};
+    EuroPut();
+    EuroPut(double maturity, double strikePrice);
+    ~EuroPut();
 
-    double payoff(double maturityPrice);
-    double price(const BlackScholes& BS);
+    double payoff(double maturityPrice) const;
+    double price(const BlackScholes& BS) const;
 
 
 };
