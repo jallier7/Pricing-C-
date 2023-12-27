@@ -15,8 +15,7 @@ BlackScholes::BlackScholes(){
 };
 
 
-BlackScholes::BlackScholes(double time, double stockPrice, double volatility,
-    double drift, double riskFreeRate){
+BlackScholes::BlackScholes(double time, double stockPrice, double volatility,double drift, double riskFreeRate){
 
         this->time = time;
         this->stockPrice = stockPrice; 

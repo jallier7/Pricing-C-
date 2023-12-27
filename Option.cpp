@@ -19,6 +19,9 @@ double norm_cdf(double x) {
 //// OPTION ////
 
 Option::Option(){
+};
+
+Option::~Option(){
 
 };
 
@@ -40,12 +43,18 @@ double Option::get_strikePrice() const {return strikePrice;};
 
 //// EuroCall ////
 
-double EuroCall::payoff(double maturityPrice){
+EuroCall::EuroCall(){};
+
+EuroCall::~EuroCall(){};
+
+EuroCall::EuroCall(double maturity, double strikePrice): Option(maturity,strikePrice){};
+
+double EuroCall::payoff(double maturityPrice) const {
     double strike = get_strikePrice();
     return std::max<double>(maturityPrice-strike,0);
 };
 
-double EuroCall::price(const BlackScholes& BS){
+double EuroCall::price(const BlackScholes& BS) const {
 
     double tau = get_maturity()- BS.get_time(); // time left to maturity
     double stockPrice = BS.get_stockPrice();
@@ -64,12 +73,20 @@ double EuroCall::price(const BlackScholes& BS){
 
 //// EuroPut ////
 
-double EuroPut::payoff(double maturityPrice){
+EuroPut::EuroPut(){
+};
+
+EuroPut::~EuroPut(){
+};
+
+EuroPut::EuroPut(double maturity, double strikePrice): Option(maturity,strikePrice){};
+
+double EuroPut::payoff(double maturityPrice) const {
     double strike = get_strikePrice();
     return std::max<double>(strike-maturityPrice,0);
 };
 
-double EuroPut::price(const BlackScholes& BS){
+double EuroPut::price(const BlackScholes& BS) const {
 
     double tau = get_maturity()- BS.get_time(); // time left to maturity
     double stockPrice = BS.get_stockPrice();
