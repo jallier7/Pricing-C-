@@ -1,9 +1,9 @@
 # C++ Project: Option pricing with Black-Scholes and Monte Carlo models.
 
 ## Authors
-- Théo
-- Jérôme
-- Bastien
+- Théo MORET
+- Jérôme ALLIER
+- Bastien CANNARD
 
 ## Task Distribution
 - **Théo**: Development and Implementation of the Black-Scholes and Monte Carlo models for price trajectory simulation. Backtesting of models using online pricers.
@@ -97,7 +97,7 @@ Our suite of models covers a wide range of financial options:
 
 ## Class Diagrams
 Class diagrams illustrating the architecture and relationships 
-between different components of the system are included in the appendix.
+between different components of the system are included in the folder.
 
 ## Backtesting the Model
 We backtested our models by comparing the prices of European and American options.
