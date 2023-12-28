@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Option.h"
 #include "BSmodel.h"
+#include "Binomialmodel.h"
 
 using namespace std;
 
@@ -40,6 +41,8 @@ void Option::set_strikePrice(double strikePrice){this->strikePrice = strikePrice
 double Option::get_strikePrice() const {return strikePrice;};
 
 
+void Option::set_numSteps(int numSteps) {this->numSteps = numSteps;}
+int Option::get_numSteps() const {return numSteps;}
 
 //// EuroCall ////
 
@@ -114,6 +117,15 @@ double AmeriCall::payoff(double Price) const {
     double strike = get_strikePrice();
     return std::max<double>(Price-strike,0);
 };
+double AmeriCall::price(const BlackScholes& BS) const {
+    // Create a BinomialModel object
+    // Note: You'll need to determine the appropriate parameters (e.g., numSteps)
+    BinomialModel binomialModel(BS.get_stockPrice(), BS.get_riskFreeRate(), 
+                                BS.get_volatility(), get_maturity() - BS.get_time(), 
+                                get_numSteps(), true); // true for American option
+
+    // Call priceOption method
+    return binomialModel.priceOption(*this);}
 
 //// AmeriPut ////
 
@@ -123,9 +135,16 @@ AmeriPut::~AmeriPut(){};
 
 AmeriPut::AmeriPut(double maturity, double strikePrice): Option(maturity,strikePrice){};
 
-double AmeriCall::payoff(double Price) const {
+double AmeriPut::payoff(double Price) const {
     double strike = get_strikePrice();
-    return std::max<double>(Price-strike,0);
+    return std::max<double>(strike-Price,0);
 };
+double AmeriPut::price(const BlackScholes& BS) const {
+    BinomialModel binomialModel(BS.get_stockPrice(), BS.get_riskFreeRate(), 
+                                BS.get_volatility(), get_maturity() - BS.get_time(), 
+                                get_numSteps(), true); // Use appropriate numSteps
+
+    return binomialModel.priceOption(*this); // Passing the current object
+}
 
 #endif

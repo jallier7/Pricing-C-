@@ -10,6 +10,7 @@ class Option{
 
     double maturity;
     double strikePrice;
+    int numSteps;
 
     public:
 
@@ -24,6 +25,9 @@ class Option{
     void set_strikePrice(double strikePrice);
     double get_strikePrice() const;
 
+    void set_numSteps(int numSteps);
+    int get_numSteps() const;
+    
     virtual double payoff(double maturityPrice) const=0;
     virtual double price(const BlackScholes& BS) const=0;
 
