@@ -93,7 +93,7 @@ Our suite of models covers a wide range of financial options:
 
 - **European Options**: Priced using the Black-Scholes model for instance.
 - **American Options**: Evaluated using the binomial model for example.
-**Price Simulations**: Monte Carlo model used for simulating price trajectories under various market scenarios.
+- **Price Simulations**: Monte Carlo model used for simulating price trajectories under various market scenarios.
 
 ## Class Diagrams
 Class diagrams illustrating the architecture and relationships 
@@ -107,5 +107,5 @@ The results show a close match with online pricers, validating the accuracy of o
 ## Code Demonstration
 We plan a live demonstration of the code during the defense scheduled for 01/12. This demo will include:
 
-- **Presentation of the Code and Explanation of Its Operation (10 minutes)**.
-- **Question and Answer Session (5 minutes)**.
+- Presentation of the Code and Explanation of Its Operation (10 minutes).
+- Question and Answer Session (5 minutes).
