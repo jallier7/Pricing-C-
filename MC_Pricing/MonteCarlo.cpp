@@ -7,7 +7,7 @@
 #include <cmath>
 
 
-// Const.
+// Constructors
 
 MonteCarlo::MonteCarlo(){};
 MonteCarlo::MonteCarlo(int nbrPaths, int nbrSteps){
@@ -26,6 +26,15 @@ void MonteCarlo::set_nbrSteps(int nbrSteps){this->nbrSteps = nbrSteps;}
 
 // Method
 
+
+
+/**
+ * @brief Computes the price of an European contract at time (defined in BS model) using MonteCarlo simulations.
+ *
+ * @param opt Contract model (either Call or Put).
+ * @param BS BlackScholes model for the underlying asset.
+ * @return A double for the contract price at defined time.
+ */
 double MonteCarlo::pricing(const Option& opt, const BlackScholes& BS) const {
 
     std::vector<double> PricePath;
@@ -34,10 +43,8 @@ double MonteCarlo::pricing(const Option& opt, const BlackScholes& BS) const {
     double payoffAvg =0;
 
     for(int i=0; i<nbrPaths; i++){
-
         PricePath = BS.pricePath(date,nbrSteps);
         payoffAvg += opt.payoff(PricePath.back());
-
     };
 
     double currentPrice; 

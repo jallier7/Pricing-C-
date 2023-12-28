@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//// CDF for Price ////
+//// CDF of Normal Distribution ////
 
 double norm_cdf(double x) {
     return 0.5 * std::erfc(-x * M_SQRT1_2);
@@ -18,14 +18,18 @@ double norm_cdf(double x) {
 
 //// OPTION ////
 
-Option::Option(){};
 
-Option::~Option(){};
+// Constructors & Destructor
+
+Option::Option(){};
 
 Option::Option(double maturity, double strikePrice){
     this->maturity = maturity;    
     this->strikePrice = strikePrice;
 };
+
+Option::~Option(){};
+
 
 // Getters
 
@@ -40,17 +44,38 @@ double Option::get_strikePrice() const {return strikePrice;};
 
 //// EuroCall ////
 
-EuroCall::EuroCall(){};
 
-EuroCall::~EuroCall(){};
+// Constructors & Destructor
+
+EuroCall::EuroCall(){};
 
 EuroCall::EuroCall(double maturity, double strikePrice): Option(maturity,strikePrice){};
 
+EuroCall::~EuroCall(){};
+
+
+// Methods
+
+
+/**
+ * @brief Computes the payoff of the European Call contract.
+ *
+ * @param maturityPrice Market price of the underlying at maturity.
+ * @return A double for the payoff.
+ */
 double EuroCall::payoff(double maturityPrice) const {
     double strike = get_strikePrice();
     return std::max<double>(maturityPrice-strike,0);
 };
 
+
+
+/**
+ * @brief Computes the price of the European Call contract at time (defined in BS model).
+ *
+ * @param BS BlackScholes model for the underlying asset.
+ * @return A double for the price at defined time.
+ */
 double EuroCall::price(const BlackScholes& BS) const {
 
     double tau = get_maturity()- BS.get_time(); // time left to maturity
@@ -70,19 +95,38 @@ double EuroCall::price(const BlackScholes& BS) const {
 
 //// EuroPut ////
 
-EuroPut::EuroPut(){
-};
 
-EuroPut::~EuroPut(){
-};
+// Constructors & Destructor
+
+EuroPut::EuroPut(){};
 
 EuroPut::EuroPut(double maturity, double strikePrice): Option(maturity,strikePrice){};
 
+EuroPut::~EuroPut(){};
+
+
+
+// Methods
+
+
+/**
+ * @brief Computes the payoff of the European Put contract.
+ *
+ * @param maturityPrice Market price of the underlying at maturity.
+ * @return A double for the payoff.
+ */
 double EuroPut::payoff(double maturityPrice) const {
     double strike = get_strikePrice();
     return std::max<double>(strike-maturityPrice,0);
 };
 
+
+/**
+ * @brief Computes the price of the European Put contract at time (defined in BS model).
+ *
+ * @param BS BlackScholes model for the underlying asset.
+ * @return A double for the price at defined time.
+ */
 double EuroPut::price(const BlackScholes& BS) const {
 
     double tau = get_maturity()- BS.get_time(); // time left to maturity
