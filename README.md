@@ -13,17 +13,20 @@
 ## The Utility of C++ in the Project
 The use of C++ for a project aimed at determining the pricing of financial
 options and replication strategy in the Black-Scholes-Merton 
-model was particularly relevant and beneficial for several reasons. 
+model was particularly relevant and beneficial for several reasons.  
+
 Firstly, C++ is renowned for its high performance in terms of execution 
 speed, which is crucial in the field of quantitative finance where 
 rapid data processing and computations are essential. 
 C++'s ability to handle complex and computationally intensive operations,
-such as those required in Monte Carlo methods for simulating asset price trajectories, gives it a significant advantage over other, slower programming languages.
+such as those required in Monte Carlo methods for simulating asset price trajectories, gives it a significant advantage over other, slower programming languages.  
+
 Moreover, C++ offers low-level control over memory management, 
 allowing for fine-tuning of the code for enhanced performance,
 This feature enables more efficient execution of Monte Carlo simulations,
 thereby reducing the time needed to obtain accurate results 
-for option pricing and replication strategies.
+for option pricing and replication strategies.  
+
 The object-oriented programming (OOP) of C++ is also a major advantage, 
 allowing for an intuitive modeling of complex financial entities 
 such as options and models. OOP facilitates the organization of code,
@@ -31,12 +34,14 @@ making the program's development and maintenance simpler
 and more efficient. 
 This allows for the creation of extensible and reusable structures,
 ideal for adapting and extending the Black-Scholes model 
-to different market conditions or types of options.
+to different market conditions or types of options.  
+
 Additionally, the wealth of libraries and tools available for C++ 
 is a significant asset. 
 There are numerous powerful libraries for mathematical operations, 
 random number generation, and statistical computations, 
-all essential in implementing the Monte Carlo method and financial modeling in general.
+all essential in implementing the Monte Carlo method and financial modeling in general.  
+
 Lastly, C++ is widely used in the financial industry, 
 which means that developing skills in this language 
 and familiarizing oneself can be directly applicable 
