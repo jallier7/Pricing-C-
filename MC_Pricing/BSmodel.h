@@ -37,7 +37,7 @@ class BlackScholes{
     double get_riskFreeRate() const;
 
     std::vector<double> pricePath(double date, int steps) const;
-
+    std::vector<double> pricePathNeutral(double date, int steps) const;
 
 };
 

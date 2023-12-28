@@ -3,7 +3,7 @@
 
 #include "Option.h"
 #include "BSmodel.h"
-
+#include <array>
 
 class MonteCarlo{
 
@@ -24,7 +24,7 @@ class MonteCarlo{
     void set_nbrPaths(int nbrPaths);
     int get_nbrPaths() const;
 
-    double pricing(const Option& opt, const BlackScholes& BS) const;
+    std::array<double, 2> pricing(const Option& opt, const BlackScholes& BS) const;
 
 };
 
