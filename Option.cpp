@@ -101,4 +101,31 @@ double EuroPut::price(const BlackScholes& BS) const {
     return P;
 };
 
+
+//// AmeriCall ////
+
+AmeriCall::AmeriCall(){};
+
+AmeriCall::~AmeriCall(){};
+
+AmeriCall::AmeriCall(double maturity, double strikePrice): Option(maturity,strikePrice){};
+
+double AmeriCall::payoff(double Price) const {
+    double strike = get_strikePrice();
+    return std::max<double>(Price-strike,0);
+};
+
+//// AmeriPut ////
+
+AmeriPut::AmeriPut(){};
+
+AmeriPut::~AmeriPut(){};
+
+AmeriPut::AmeriPut(double maturity, double strikePrice): Option(maturity,strikePrice){};
+
+double AmeriCall::payoff(double Price) const {
+    double strike = get_strikePrice();
+    return std::max<double>(Price-strike,0);
+};
+
 #endif

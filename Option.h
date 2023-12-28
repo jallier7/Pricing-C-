@@ -57,4 +57,24 @@ class EuroPut : public Option {
 
 };
 
+class AmeriCall : public Option {
+    public:
+    AmeriCall();
+    AmeriCall(double maturity, double strikePrice);
+    ~AmeriCall();
+
+    double payoff(double Price) const;
+    double price(const BlackScholes& BS) const;
+};
+
+class AmeriPut : public Option {
+    public:
+    AmeriPut();
+    AmeriPut(double maturity, double strikePrice);
+    ~AmeriPut();
+
+    double payoff(double Price) const;
+    double price(const BlackScholes& BS) const;
+};
+
 #endif
