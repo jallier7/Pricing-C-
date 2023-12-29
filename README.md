@@ -87,21 +87,19 @@ to analyze a broad spectrum of options under varying conditions.
 
 Finally, the code is well-commented and documented to ensure easy comprehension by new users.
 
-## Coverage of a Wide Range of Options
-Our suite of models covers a wide range of financial options:
+## Coverage of Options
+Our suite of models covers the following financial options:
 
-- **European Options**: Priced using the Black-Scholes model for instance.
-- **American Options**: Evaluated using the binomial model for example.
-- **Price Simulations**: Monte Carlo model used for simulating price trajectories under various market scenarios.
+- **European Options**: Black-Scholes and Binomial models.
+- **American Options**: Binomial model.
+- **Price Simulations**: Monte-Carlo simulations of Black-Scholes model.
 
 ## Class Diagrams
 Class diagrams illustrating the architecture and relationships 
 between different components of the system are included in the folder.
 
 ## Backtesting the Model
-We backtested our models by comparing the prices of European and American options.
-The results show a close match with online pricers, validating the accuracy of our models.
-
+Backtesting was made in comparison with online pricers.
 
 ## Code Demonstration
 We plan a live demonstration of the code during the defense scheduled for 01/12. This demo will include:
