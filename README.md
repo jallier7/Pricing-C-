@@ -1,4 +1,4 @@
-# C++ Project: Option pricing with Black-Scholes and Monte Carlo models.
+# C++ Project: Option pricing with Black-Scholes and Binomial models.
 
 ## Authors
 - Théo MORET
@@ -6,14 +6,13 @@
 - Bastien CANNARD
 
 ## Task Distribution
-- **Théo**: Development and Implementation of the Black-Scholes and Monte Carlo models for price trajectory simulation. Backtesting of models using online pricers.
+- **Théo**: Development and Implementation of the Black-Scholes model for price trajectory simulation via Monte Carlo. Backtesting of models using online pricers.
 - **Jérôme**: Development and Implementation of the differents options. Documentation writing.
 - **Bastien**: Development of the discrete-time binomial model for American and European options. Documentation writing and README.md creating.
 
 ## The Utility of C++ in the Project
-The use of C++ for a project aimed at determining the pricing of financial
-options and replication strategy in the Black-Scholes-Merton 
-model was particularly relevant and beneficial for several reasons.  
+This C++ project aimed at determining the pricing of financial
+options with two different models : Black-Scholes model thanks to Monte Carlo simulations and Binomial model. 
 
 Firstly, C++ is renowned for its high performance in terms of execution 
 speed, which is crucial in the field of quantitative finance where 
@@ -51,7 +50,7 @@ This makes the project not only academically enriching but also professionally r
 
 ## Ease of Use, Scalability, and Reusability.
 
-The design and structure of our code make it exceptionally user-friendly, 
+The design and structure of our code make it user-friendly, 
 scalable, and reusable, particularly suited for various scenarios 
 beyond its current application in pricing financial options 
 and implementing replication strategies in the Black-Scholes-Merton model. 
@@ -63,7 +62,7 @@ and the Monte Carlo method enhances readability and maintainability.
 Each component is encapsulated in its module, 
 allowing for easier understanding, debugging, and modification without affecting other parts of the system.  
 
-The use of object-oriented programming principles 
+The use of OOP principles 
 further contributes to this modular approach. 
 By defining distinct classes for different financial models and options,
 our code becomes inherently scalable. 
