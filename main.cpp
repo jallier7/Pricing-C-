@@ -15,10 +15,6 @@ int main() {
     EuroCall euroCall(maturity, strikePrice);
     EuroPut euroPut(maturity, strikePrice);
 
-    // Create the American Call and Put options
-    AmeriCall ameriCall(maturity, strikePrice);
-    AmeriPut ameriPut(maturity, strikePrice);
-
     // Create BinomialModel instances for European and American options
     BinomialModel binomialModelEuro(spotPrice, interestRate, volatility, maturity, numSteps, false); // false for European
     BinomialModel binomialModelAmeri(spotPrice, interestRate, volatility, maturity, numSteps, true); // true for American
@@ -27,9 +23,9 @@ int main() {
     double euroCallPrice = binomialModelEuro.priceOption(euroCall);
     double euroPutPrice = binomialModelEuro.priceOption(euroPut);
 
-    // Pricing American options
-    double ameriCallPrice = binomialModelAmeri.priceOption(ameriCall);
-    double ameriPutPrice = binomialModelAmeri.priceOption(ameriPut);
+    // Pricing American options (assuming EuroCall and EuroPut can be used for American options)
+    double ameriCallPrice = binomialModelAmeri.priceOption(euroCall); // Use EuroCall for American option pricing
+    double ameriPutPrice = binomialModelAmeri.priceOption(euroPut);   // Use EuroPut for American option pricing
 
     // Output the results
     std::cout << "European Call Option Price: " << euroCallPrice << std::endl;

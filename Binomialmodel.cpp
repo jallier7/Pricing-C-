@@ -3,12 +3,21 @@
 #include <algorithm>
 #include <vector>
 
+
+
 // Constructor for the Binomial model class
 BinomialModel::BinomialModel(double spotPrice, double interestRate, double volatility, 
                              double timeToMaturity, int numSteps, bool isAmerican)
     : spotPrice(spotPrice), interestRate(interestRate), volatility(volatility), 
       timeToMaturity(timeToMaturity), numSteps(numSteps), isAmerican(isAmerican) {}
 
+void BinomialModel::set_numSteps(int numSteps) {
+    this->numSteps = numSteps;
+}
+
+int BinomialModel::get_numSteps() const {
+    return numSteps;
+}
 // Private method to calculate the price of an option
 double BinomialModel::calculateOptionPrice(const Option& option) {
     // Set up the parameters of the binomial tree

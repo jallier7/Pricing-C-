@@ -25,8 +25,7 @@ class Option{
     void set_strikePrice(double strikePrice);
     double get_strikePrice() const;
 
-    void set_numSteps(int numSteps);
-    int get_numSteps() const;
+
     
     virtual double payoff(double maturityPrice) const=0;
     virtual double price(const BlackScholes& BS) const=0;
@@ -68,7 +67,7 @@ class AmeriCall : public Option {
     ~AmeriCall();
 
     double payoff(double Price) const;
-    double price(const BlackScholes& BS) const;
+    double price(const BlackScholes& BS, int numSteps) const;
 };
 
 class AmeriPut : public Option {
@@ -78,7 +77,7 @@ class AmeriPut : public Option {
     ~AmeriPut();
 
     double payoff(double Price) const;
-    double price(const BlackScholes& BS) const;
+    double price(const BlackScholes& BS, int numSteps) const;
 };
 
 #endif

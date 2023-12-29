@@ -3,13 +3,16 @@
 
 #include "Option.h"
 
+
+
 // BinomialModel class for pricing options using the binomial method
 class BinomialModel {
 public:
     // Constructor with parameters necessary for the binomial model
     BinomialModel(double spotPrice, double interestRate, double volatility, 
                   double timeToMaturity, int numSteps, bool isAmerican);
-
+    void set_numSteps(int numSteps); // Set the number of steps
+    int get_numSteps() const;        // Get the number of steps
     // Method to price an option (either Call or Put) using the binomial model
     double priceOption(const Option& option);
 
