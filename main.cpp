@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <tuple>
+#include <fstream>
 
 #include "Option.h"
 #include "BinomialModel.h"
@@ -54,22 +54,31 @@ int main() {
         }
     }
 
-    // Output the results
+    // Create and open a file
+    std::ofstream outFile("option_pricing_results.csv");
+
+    // Write the header
+    outFile << "Spot Price,Strike Price,Maturity,Interest Rate,Volatility,Euro Call Price,Euro Put Price,American Call Price,American Put Price\n";
+
+    // Write data
     for (const auto& res : results) {
-        std::cout << "Spot Price: " << res.spotPrice
-                  << ", Strike Price: " << res.strikePrice
-                  << ", Maturity: " << res.maturity
-                  << ", Interest Rate: " << res.interestRate
-                  << ", Volatility: " << res.volatility
-                  << ", European Call Price: " << res.euroCallPrice
-                  << ", European Put Price: " << res.euroPutPrice
-                  << ", American Call Price: " << res.ameriCallPrice
-                  << ", American Put Price: " << res.ameriPutPrice
-                  << std::endl;
+        outFile << res.spotPrice << ","
+                << res.strikePrice << ","
+                << res.maturity << ","
+                << res.interestRate << ","
+                << res.volatility << ","
+                << res.euroCallPrice << ","
+                << res.euroPutPrice << ","
+                << res.ameriCallPrice << ","
+                << res.ameriPutPrice << "\n";
     }
-    
+
+    // Close the file
+    outFile.close();
+
+    std::cout << "CSV file created: option_pricing_results.csv" << std::endl;
+
     return 0;
 }
-
 
 
