@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Option.h"
-#include "BSmodel.h"
-#include "MonteCarlo.h"
+#include "include/Option.h"
+#include "include/BSmodel.h"
+#include "include/MonteCarlo.h"
 
 int main(){
 
