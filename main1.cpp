@@ -2,8 +2,8 @@
 #include <vector>
 #include <fstream>
 
-#include "Option.h"
-#include "BinomialModel.h"
+#include "include/Option.h"
+#include "include/BinomialModel.h"
 
 // Define a struct to hold the results
 struct OptionPricingResult {
