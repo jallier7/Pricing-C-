@@ -1,38 +1,75 @@
 #include <iostream>
+#include <vector>
+#include <tuple>
+
 #include "Option.h"
 #include "BinomialModel.h"
 
+// Define a struct to hold the results
+struct OptionPricingResult {
+    double spotPrice;
+    double strikePrice;
+    double maturity;
+    double interestRate;
+    double volatility;
+    double euroCallPrice;
+    double euroPutPrice;
+    double ameriCallPrice;
+    double ameriPutPrice;
+};
+
 int main() {
-    // Parameters for the options and the model
-    double spotPrice = 100; // Example spot price of the underlying asset
-    double strikePrice = 100; // Example strike price
-    double maturity = 1; // Time to maturity in years
-    double interestRate = 0.05; // Risk-free interest rate
-    double volatility = 0.2; // Volatility of the underlying asset
-    int numSteps = 100; // Number of steps in the binomial model
+    std::vector<double> strikePrices = {90, 95, 100, 105, 110};
+    std::vector<double> maturities = {1, 2, 5};
+    std::vector<double> interestRates = {0.01, 0.02, 0.05};
+    std::vector<double> volatilities = {0.1, 0.2, 0.3};
+    double spotPrice = 100;
+    int numSteps = 100;
 
-    // Create the European Call and Put options
-    EuroCall euroCall(maturity, strikePrice);
-    EuroPut euroPut(maturity, strikePrice);
+    std::vector<OptionPricingResult> results;
 
-    // Create BinomialModel instances for European and American options
-    BinomialModel binomialModelEuro(spotPrice, interestRate, volatility, maturity, numSteps, false); // false for European
-    BinomialModel binomialModelAmeri(spotPrice, interestRate, volatility, maturity, numSteps, true); // true for American
+    for (double strikePrice : strikePrices) {
+        for (double maturity : maturities) {
+            for (double interestRate : interestRates) {
+                for (double volatility : volatilities) {
+                    EuroCall euroCall(maturity, strikePrice);
+                    EuroPut euroPut(maturity, strikePrice);
+                    BinomialModel binomialModelEuro(spotPrice, interestRate, volatility, maturity, numSteps, false);
+                    BinomialModel binomialModelAmeri(spotPrice, interestRate, volatility, maturity, numSteps, true);
 
-    // Pricing European options
-    double euroCallPrice = binomialModelEuro.priceOption(euroCall);
-    double euroPutPrice = binomialModelEuro.priceOption(euroPut);
+                    OptionPricingResult result;
+                    result.spotPrice = spotPrice;
+                    result.strikePrice = strikePrice;
+                    result.maturity = maturity;
+                    result.interestRate = interestRate;
+                    result.volatility = volatility;
+                    result.euroCallPrice = binomialModelEuro.priceOption(euroCall);
+                    result.euroPutPrice = binomialModelEuro.priceOption(euroPut);
+                    result.ameriCallPrice = binomialModelAmeri.priceOption(euroCall);
+                    result.ameriPutPrice = binomialModelAmeri.priceOption(euroPut);
 
-    // Pricing American options (assuming EuroCall and EuroPut can be used for American options)
-    double ameriCallPrice = binomialModelAmeri.priceOption(euroCall); // Use EuroCall for American option pricing
-    double ameriPutPrice = binomialModelAmeri.priceOption(euroPut);   // Use EuroPut for American option pricing
+                    results.push_back(result);
+                }
+            }
+        }
+    }
 
     // Output the results
-    std::cout << "European Call Option Price: " << euroCallPrice << std::endl;
-    std::cout << "European Put Option Price: " << euroPutPrice << std::endl;
-    std::cout << "American Call Option Price: " << ameriCallPrice << std::endl;
-    std::cout << "American Put Option Price: " << ameriPutPrice << std::endl;
-
+    for (const auto& res : results) {
+        std::cout << "Spot Price: " << res.spotPrice
+                  << ", Strike Price: " << res.strikePrice
+                  << ", Maturity: " << res.maturity
+                  << ", Interest Rate: " << res.interestRate
+                  << ", Volatility: " << res.volatility
+                  << ", European Call Price: " << res.euroCallPrice
+                  << ", European Put Price: " << res.euroPutPrice
+                  << ", American Call Price: " << res.ameriCallPrice
+                  << ", American Put Price: " << res.ameriPutPrice
+                  << std::endl;
+    }
+    
     return 0;
 }
+
+
 
