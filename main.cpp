@@ -19,10 +19,10 @@ struct OptionPricingResult {
 };
 
 int main() {
-    std::vector<double> strikePrices = {90, 100, 110};
-    std::vector<double> maturities = {1};
+    std::vector<double> strikePrices = {100};
+    std::vector<double> maturities = {1,};
     std::vector<double> interestRates = {0.01};
-    std::vector<double> volatilities = {0.1};
+    std::vector<double> volatilities = {0.1, 0.2, 0.3};
     double spotPrice = 100;
     int numSteps = 100;
 
@@ -55,7 +55,7 @@ int main() {
     }
 
     // Create and open a file
-    std::ofstream outFile("option_pricing_results.csv");
+    std::ofstream outFile("option_pricing_results4.csv");
 
     // Write the header
     outFile << "Spot Price,Strike Price,Maturity,Interest Rate,Volatility,Euro Call Price,Euro Put Price,American Call Price,American Put Price\n";

@@ -1,0 +1,4 @@
+Spot Price,Strike Price,Maturity,Interest Rate,Volatility,Euro Call Price,Euro Put Price,American Call Price,American Put Price
+100,100,1,0.01,0.1,4.47528,3.48026,4.47528,3.56609
+100,100,1,0.01,0.2,8.4135,7.41849,8.4135,7.49935
+100,100,1,0.01,0.3,12.3386,11.3436,12.3386,11.4243
