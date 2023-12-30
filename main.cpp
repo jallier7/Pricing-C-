@@ -19,10 +19,10 @@ struct OptionPricingResult {
 };
 
 int main() {
-    std::vector<double> strikePrices = {90, 100, 100};
-    std::vector<double> maturities = {1, 2};
-    std::vector<double> interestRates = {0.01, 0.02};
-    std::vector<double> volatilities = {0.1, 0.2};
+    std::vector<double> strikePrices = {90, 100, 110};
+    std::vector<double> maturities = {1};
+    std::vector<double> interestRates = {0.01};
+    std::vector<double> volatilities = {0.1};
     double spotPrice = 100;
     int numSteps = 100;
 
