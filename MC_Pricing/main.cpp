@@ -9,7 +9,7 @@ int main(){
 
     double time = 0;
     double stockPrice = 40.0;
-    double volatility = 0.30;
+    double volatility = 0.1;
     double drift = 0.01;
     double riskFreeRate = 0.03;
 
@@ -27,7 +27,7 @@ int main(){
     // Parameters for the MonteCarlo Princing method
 
     int nbrSteps = 1000;
-    int nbrPaths = 300000;
+    int nbrPaths = 400000;
     
     MonteCarlo MC(nbrSteps,nbrPaths); // Creation of the MC class
     
