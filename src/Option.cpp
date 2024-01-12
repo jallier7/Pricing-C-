@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Option.h"
 #include "BSmodel.h"
+#include "Binomialmodel.h"
 
 using namespace std;
 
